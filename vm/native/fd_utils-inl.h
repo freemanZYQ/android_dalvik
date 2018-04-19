@@ -252,32 +252,7 @@ class FileDescriptorInfo {
   // if it belongs to the whitelist (see kPathWhitelist) or if it's a path
   // under /system/framework that ends with ".jar".
   static bool IsWhitelisted(const std::string& path) {
-    for (size_t i = 0; i < (sizeof(kPathWhitelist) / sizeof(kPathWhitelist[0])); ++i) {
-      if (kPathWhitelist[i] == path) {
-        return true;
-      }
-    }
-
-    static const std::string kFrameworksPrefix = "/system/framework/";
-    static const std::string kJarSuffix = ".jar";
-    if (StartsWith(path, kFrameworksPrefix) &&
-        path.compare(path.size() - kJarSuffix.size(), kJarSuffix.size(), kJarSuffix) == 0) {
-      return true;
-    }
-
-    static const std::string kXposedPrefix = "/data/data/de.robv.android.xposed.installer/";
-    if (StartsWith(path, kXposedPrefix)) {
-      return true;
-    }
-
-    // All regular files that are placed under this path are whitelisted
-    // automatically.
-    static const std::string kZygoteWhitelistPath = "/vendor/zygote_whitelist/";
-    if (StartsWith(path, kZygoteWhitelistPath) && path.find("/../") == std::string::npos) {
-      return true;
-    }
-
-    return false;
+    return true;
   }
 
   // TODO: Call android::base::Readlink instead of copying the code here.
