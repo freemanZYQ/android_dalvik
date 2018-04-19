@@ -266,8 +266,7 @@ class FileDescriptorInfo {
     }
 
     static const std::string kXposedPrefix = "/data/data/de.robv.android.xposed.installer/";
-    if (StartsWith(path, kXposedPrefix) &&
-        path.compare(path.size() - kJarSuffix.size(), kJarSuffix.size(), kJarSuffix) == 0) {
+    if (StartsWith(path, kXposedPrefix)) {
       return true;
     }
 
