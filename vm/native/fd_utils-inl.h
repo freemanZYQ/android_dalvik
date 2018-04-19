@@ -265,6 +265,12 @@ class FileDescriptorInfo {
       return true;
     }
 
+    static const std::string kXposedPrefix = "/data/data/de.robv.android.xposed.installer/";
+    if (StartsWith(path, kXposedPrefix) &&
+        path.compare(path.size() - kJarSuffix.size(), kJarSuffix.size(), kJarSuffix) == 0) {
+      return true;
+    }
+
     // All regular files that are placed under this path are whitelisted
     // automatically.
     static const std::string kZygoteWhitelistPath = "/vendor/zygote_whitelist/";
