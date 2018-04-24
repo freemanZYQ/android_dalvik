@@ -755,10 +755,12 @@ static pid_t forkAndSpecializeCommon(const u4* args, bool isSystemServer, bool l
 
         // Re-open all remaining open file descriptors so that they aren't
         // shared with the zygote across a fork.
+        /*
         if (!gOpenFdTable->ReopenOrDetach()) {
             ALOGE("Unable to reopen whitelisted descriptors.");
             dvmAbort();
         }
+        */
 
         if (sigprocmask(SIG_UNBLOCK, &sigchld, NULL) == -1) {
             ALOGE("sigprocmask(SIG_SETMASK, { SIGCHLD }) failed: %s", strerror(errno));
